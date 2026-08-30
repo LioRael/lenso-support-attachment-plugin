@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["organization_id", "case_ref", "message_id", "source", "content_id", "filename", "media_type", "visibility", "idempotency_key"],
+  "properties": {
+    "organization_id": { "$ref": "#/$defs/Opaque200" },
+    "case_ref": { "$ref": "#/$defs/Opaque500" },
+    "message_id": { "$ref": "#/$defs/NullableUuid" },
+    "source": { "$ref": "#/$defs/SourceOwner" },
+    "content_id": { "$ref": "#/$defs/Uuid" },
+    "filename": { "$ref": "#/$defs/Filename" },
+    "media_type": { "$ref": "#/$defs/MediaType" },
+    "visibility": { "$ref": "#/$defs/Visibility" },
+    "idempotency_key": { "$ref": "#/$defs/Opaque300" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Opaque200": { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[^\\x00-\\x1F\\x7F]*[^\\s\\x00-\\x1F\\x7F][^\\x00-\\x1F\\x7F]*$" },
+    "Opaque300": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[^\\x00-\\x1F\\x7F]*[^\\s\\x00-\\x1F\\x7F][^\\x00-\\x1F\\x7F]*$" },
+    "Opaque500": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^[^\\x00-\\x1F\\x7F]*[^\\s\\x00-\\x1F\\x7F][^\\x00-\\x1F\\x7F]*$" },
+    "Uuid": { "type": "string", "minLength": 36, "maxLength": 36, "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[1-8][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$" },
+    "NullableUuid": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] },
+    "SourceOwner": {
+      "type": "object",
+      "required": ["resource_type", "resource_id", "revision_id"],
+      "properties": {
+        "resource_type": { "$ref": "#/$defs/Opaque200" },
+        "resource_id": { "$ref": "#/$defs/Opaque500" },
+        "revision_id": { "anyOf": [{ "$ref": "#/$defs/Opaque500" }, { "type": "null" }] }
+      },
+      "additionalProperties": false
+    },
+    "Filename": { "type": "string", "minLength": 1, "maxLength": 255, "pattern": "^[^/\\\\\\x00-\\x1F\\x7F]*[^/\\\\\\s\\x00-\\x1F\\x7F][^/\\\\\\x00-\\x1F\\x7F]*$" },
+    "MediaType": { "type": "string", "enum": ["image/png", "image/jpeg", "text/plain"], "minLength": 9, "maxLength": 10 },
+    "Visibility": { "type": "string", "enum": ["public", "internal"], "minLength": 6, "maxLength": 8 }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema", "database_url_secret", "auth_issuer", "auth_assertion_public_key", "business_callers"],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "database_url_secret": {
+      "type": "string"
+    },
+    "auth_issuer": {
+      "type": "string"
+    },
+    "auth_assertion_public_key": {
+      "type": "string"
+    },
+    "business_callers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

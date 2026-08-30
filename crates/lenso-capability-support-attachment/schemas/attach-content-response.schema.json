@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["attachment", "receipt_id", "replayed"],
+  "properties": {
+    "attachment": { "$ref": "#/$defs/Attachment" },
+    "receipt_id": { "$ref": "#/$defs/Uuid" },
+    "replayed": { "type": "boolean" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Uuid": { "type": "string", "minLength": 36, "maxLength": 36, "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[1-8][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$" },
+    "NullableUuid": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] },
+    "Attachment": {
+      "type": "object",
+      "required": ["attachment_id", "organization_id", "case_id", "message_id", "content_id", "filename", "media_type", "visibility", "sha256", "size_bytes", "content_created_at", "attached_by_subject", "created_at"],
+      "properties": {
+        "attachment_id": { "$ref": "#/$defs/Uuid" },
+        "organization_id": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "case_id": { "$ref": "#/$defs/Uuid" },
+        "message_id": { "$ref": "#/$defs/NullableUuid" },
+        "content_id": { "$ref": "#/$defs/Uuid" },
+        "filename": { "type": "string", "minLength": 1, "maxLength": 255 },
+        "media_type": { "type": "string", "enum": ["image/png", "image/jpeg", "text/plain"], "minLength": 9, "maxLength": 10 },
+        "visibility": { "type": "string", "enum": ["public", "internal"], "minLength": 6, "maxLength": 8 },
+        "sha256": { "type": "string", "minLength": 64, "maxLength": 64, "pattern": "^[0-9a-f]{64}$" },
+        "size_bytes": { "type": "integer", "minimum": 1, "maximum": 1073741824 },
+        "content_created_at": { "type": "string", "minLength": 1, "maxLength": 64, "format": "date-time" },
+        "attached_by_subject": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "created_at": { "type": "string", "minLength": 1, "maxLength": 64, "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

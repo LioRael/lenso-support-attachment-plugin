@@ -1,0 +1,47 @@
+[package]
+name = "lenso-support-attachment-postgres-plugin"
+version = "0.1.0"
+description = "PostgreSQL-backed Support Attachment Plugin for Lenso."
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[package.metadata.lenso]
+plugin-id = "lenso.support-attachment.postgres"
+root-slot = "support-attachment"
+
+[features]
+default = []
+postgres-acceptance = []
+
+[dependencies]
+base64.workspace = true
+lenso.workspace = true
+lenso-auth-sdk.workspace = true
+lenso-capability-content-vault.workspace = true
+lenso-capability-secrets.workspace = true
+lenso-capability-support-attachment = { version = "0.1.0", path = "../lenso-capability-support-attachment" }
+lenso-capability-support-case-authorization.workspace = true
+lenso-kernel.workspace = true
+lenso-postgres-kit.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+sqlx.workspace = true
+thiserror.workspace = true
+time.workspace = true
+uuid.workspace = true
+zeroize.workspace = true
+
+[dev-dependencies]
+futures.workspace = true
+lenso-app-plan.workspace = true
+lenso-native-adapter.workspace = true
+lenso-runner.workspace = true
+tokio.workspace = true
+url.workspace = true
+
+[lints]
+workspace = true

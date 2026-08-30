@@ -1,0 +1,36 @@
+{
+  "id": "lenso.support-attachment@1",
+  "version": "1.1.0",
+  "portable": true,
+  "cross_lane_transfer": true,
+  "operations": [
+    {
+      "name": "attach_content",
+      "interaction": "request",
+      "request_schema": "schemas/attach-content-request.schema.json",
+      "response_schema": "schemas/attach-content-response.schema.json",
+      "domain_error_schema": "schemas/attach-content-error.schema.json"
+    },
+    {
+      "name": "upload_and_attach",
+      "interaction": "request",
+      "request_schema": "schemas/upload-and-attach-request.schema.json",
+      "response_schema": "schemas/attach-content-response.schema.json",
+      "domain_error_schema": "schemas/upload-and-attach-error.schema.json"
+    },
+    {
+      "name": "list_attachments",
+      "interaction": "request",
+      "request_schema": "schemas/list-attachments-request.schema.json",
+      "response_schema": "schemas/list-attachments-response.schema.json",
+      "domain_error_schema": "schemas/list-attachments-error.schema.json"
+    },
+    {
+      "name": "get_attachment",
+      "interaction": "request",
+      "request_schema": "schemas/get-attachment-request.schema.json",
+      "response_schema": "schemas/get-attachment-response.schema.json",
+      "domain_error_schema": "schemas/read-attachment-error.schema.json"
+    }
+  ]
+}
