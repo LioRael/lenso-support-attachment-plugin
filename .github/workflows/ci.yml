@@ -35,15 +35,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install --yes jq ripgrep
       - run: cargo fmt --all -- --check
       - run: cargo check --locked --workspace --all-targets --all-features
+      - name: Install exact contract projection checker
+        run: cargo install --locked --version '=0.6.4' lenso-contract-codegen
+      - run: lenso-contract-codegen workspace check --manifest-path Cargo.toml
       - run: cargo test --locked --workspace --all-targets
       - run: cargo clippy --locked --workspace --all-targets --all-features -- -D warnings
-      - name: Install exact contract projection checker
-        run: >-
-          cargo install --locked
-          --git https://github.com/LioRael/lenso-protocols
-          --rev 9d2774c767fd64a6cc63a5ac04360e9cb92816da
-          lenso-contract-codegen
-      - run: lenso-contract-codegen workspace check --manifest-path Cargo.toml
       - run: ./scripts/check-repository-boundary.sh
       - name: PostgreSQL durable attachment acceptance
         env:
