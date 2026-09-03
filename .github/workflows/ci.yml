@@ -41,6 +41,7 @@ jobs:
       - run: cargo test --locked --workspace --all-targets
       - run: cargo clippy --locked --workspace --all-targets --all-features -- -D warnings
       - run: ./scripts/check-repository-boundary.sh
+      - run: cargo package --locked -p lenso-capability-support-attachment
       - name: PostgreSQL durable attachment acceptance
         env:
           LENSO_SUPPORT_ATTACHMENT_TEST_DATABASE_URL: postgres://postgres@127.0.0.1:5432/support_attachment_test_ci
