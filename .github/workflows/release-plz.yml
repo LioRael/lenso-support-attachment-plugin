@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       live:
-        description: Publish the Support Attachment Capability and create its release
+        description: Publish the Support Attachment packages and create their releases
         required: true
         default: false
         type: boolean
@@ -16,7 +16,7 @@ on:
 permissions: {}
 
 concurrency:
-  group: support-attachment-capability-release
+  group: support-attachment-release
   cancel-in-progress: false
 
 jobs:
